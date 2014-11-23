@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="sys.dao" transaction-type="RESOURCE_LOCAL">
+		<class>core.entity.Almacen</class>
+		<class>core.entity.AlmacenPK</class>
+		<class>core.entity.Area</class>
+		<class>core.entity.Asiento</class>
+		<class>core.entity.CfgCentralizaAlm</class>
+		<class>core.entity.CfgCentralizaAlmPK</class>
+		<class>core.entity.Clieprov</class>
+		<class>core.entity.Concepto</class>
+		<class>core.entity.Consumidor</class>
+		<class>core.entity.ConversionUM</class>
+		<class>core.entity.ConversionUMPK</class>
+		<class>core.entity.CotizacionCompra</class>
+		<class>core.entity.Cuenta</class>
+		<class>core.entity.DAsiento</class>
+		<class>core.entity.DAsientoPK</class>
+		<class>core.entity.DCotizacionCompra</class>
+		<class>core.entity.DCotizacionCompraPK</class>
+		<class>core.entity.DDOrdenCompra</class>
+		<class>core.entity.DDOrdenCompraPK</class>
+		<class>core.entity.DOrdenCompra</class>
+		<class>core.entity.DOrdenCompraPK</class>
+		<class>core.entity.DOrdenServicio</class>
+		<class>core.entity.DOrdenServicioPK</class>
+		<class>core.entity.DRequerimiento</class>
+		<class>core.entity.DRequerimientoPK</class>
+		<class>core.entity.DSolicitudCompra</class>
+		<class>core.entity.DSolicitudCompraPK</class>
+		<class>core.entity.DSolicitudCotizacion</class>
+		<class>core.entity.DSolicitudCotizacionPK</class>
+		<class>core.entity.DetDocingreso</class>
+		<class>core.entity.DetDocingresoPK</class>
+		<class>core.entity.DetDocsalida</class>
+		<class>core.entity.DetDocsalidaPK</class>
+		<class>core.entity.DocFormulario</class>
+		<class>core.entity.Docingreso</class>
+		<class>core.entity.Docsalida</class>
+		<class>core.entity.Documento</class>
+		<class>core.entity.DocumentoNumero</class>
+		<class>core.entity.DocumentoNumeroPK</class>
+		<class>core.entity.Empleado</class>
+		<class>core.entity.Empresa</class>
+		<class>core.entity.Equipo</class>
+		<class>core.entity.Flujo</class>
+		<class>core.entity.FlujoAprobacion</class>
+		<class>core.entity.FlujoAprobacionPK</class>
+		<class>core.entity.Grupo</class>
+		<class>core.entity.GrupoCentralizacion</class>
+		<class>core.entity.GrupoUsuario</class>
+		<class>core.entity.GrupoUsuarioPrivilegio</class>
+		<class>core.entity.GrupoUsuarioPrivilegioPK</class>
+		<class>core.entity.GuardarUsuario</class>
+		<class>core.entity.GuardarUsuarioPK</class>
+		<class>core.entity.Impuesto</class>
+		<class>core.entity.Kardex</class>
+		<class>core.entity.KardexCompraRecepcion</class>
+		<class>core.entity.KardexRequerimiento</class>
+		<class>core.entity.KardexSlcCompra</class>
+		<class>core.entity.Log</class>
+		<class>core.entity.Marca</class>
+		<class>core.entity.Moneda</class>
+		<class>core.entity.OrdenCompra</class>
+		<class>core.entity.OrdenServicio</class>
+		<class>core.entity.PrivUsuarioAlmacen</class>
+		<class>core.entity.PrivUsuarioAlmacenPK</class>
+		<class>core.entity.Producto</class>
+		<class>core.entity.ProductoImpuesto</class>
+		<class>core.entity.ProductoImpuestoPK</class>
+		<class>core.entity.ProductoStockMinimo</class>
+		<class>core.entity.ProductoStockMinimoPK</class>
+		<class>core.entity.PtoEmision</class>
+		<class>core.entity.Requerimiento</class>
+		<class>core.entity.Responsable</class>
+		<class>core.entity.SolicitudCompra</class>
+		<class>core.entity.SolicitudCotizacion</class>
+		<class>core.entity.Subdiario</class>
+		<class>core.entity.Subequipo</class>
+		<class>core.entity.SubequipoPK</class>
+		<class>core.entity.Subgrupo</class>
+		<class>core.entity.SubgrupoPK</class>
+		<class>core.entity.Sucursal</class>
+		<class>core.entity.SysDoc</class>
+		<class>core.entity.SysDocDocser</class>
+		<class>core.entity.SysDocDocserPK</class>
+		<class>core.entity.SysDocFlujo</class>
+		<class>core.entity.SysDocFlujoPK</class>
+		<class>core.entity.SysFormulario</class>
+		<class>core.entity.SysGrupo</class>
+		<class>core.entity.SysGrupoPK</class>
+		<class>core.entity.SysModulo</class>
+		<class>core.entity.SysOpcion</class>
+		<class>core.entity.SysOpcionPK</class>
+		<class>core.entity.SysTitulo</class>
+		<class>core.entity.SysTituloPK</class>
+		<class>core.entity.TCambio</class>
+		<class>core.entity.TCambioPK</class>
+		<class>core.entity.Transportista</class>
+		<class>core.entity.Unimedida</class>
+		<class>core.entity.Usuario</class>
+		<shared-cache-mode>NONE</shared-cache-mode>
+		<properties>
+			<property name="eclipselink.jdbc.batch-writing" value="JDBC" />
+			<property name="eclipselink.jdbc.batch-writing.sizeg" value="1000" />
+			<!-- <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bd"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.password" value="root"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+			 -->
+			<!-- <property name="eclipselink.logging.level" value="FINEST" /> -->
+			<!-- <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/> -->
+		</properties>
+	</persistence-unit>
+</persistence>
