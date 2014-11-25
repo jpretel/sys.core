@@ -11,7 +11,6 @@ import javax.persistence.criteria.Root;
 
 import core.entity.KardexSlcCompra;
 import core.entity.OrdenCompra;
-import core.entity.SolicitudCompra;
 
 public class KardexSlcCompraDAO extends AbstractDAO<KardexSlcCompra> {
 
@@ -19,7 +18,8 @@ public class KardexSlcCompraDAO extends AbstractDAO<KardexSlcCompra> {
 		super(KardexSlcCompra.class);
 	}
 
-	public List<Tuple> getSaldoSolicitudCompra(SolicitudCompra solicitudCompra,
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List<Tuple> getSaldoPorOrigen(long id_origen,
 			OrdenCompra ordenCompra) {
 
 		CriteriaQuery<Tuple> q = cb.createTupleQuery();
@@ -28,7 +28,7 @@ public class KardexSlcCompraDAO extends AbstractDAO<KardexSlcCompra> {
 		// Join p = from.join("dordencompra", JoinType.LEFT);
 
 		Predicate condicion = cb.and(
-				cb.equal(from.get("solicitudcompra"), solicitudCompra),
+				cb.equal(from.get("id_origen"), id_origen),
 				cb.and(cb.notEqual(from.get("id_referencia"),
 						ordenCompra.getIdordencompra())));
 
@@ -47,27 +47,12 @@ public class KardexSlcCompraDAO extends AbstractDAO<KardexSlcCompra> {
 		return em.createQuery(q).getResultList();
 	}
 
-	public void borrarPorIdSolicitudCompra(long idsolicitudcompra) {
+	public void borrarPorIdOrigen(long idorigen) {
 		getEntityManager().getTransaction().begin();
 		CriteriaDelete<KardexSlcCompra> delete = cb
 				.createCriteriaDelete(KardexSlcCompra.class);
 		Root<KardexSlcCompra> c = delete.from(KardexSlcCompra.class);
-		delete.where(cb.equal(
-				c.get("solicitudcompra").get("idsolicitudcompra"),
-				idsolicitudcompra));
-		Query query = getEntityManager().createQuery(delete);
-		query.executeUpdate();
-		getEntityManager().getTransaction().commit();
-	}
-	
-	public void borrarPorIdCotizacionCompra(long idcotizacioncompra) {
-		getEntityManager().getTransaction().begin();
-		CriteriaDelete<KardexSlcCompra> delete = cb
-				.createCriteriaDelete(KardexSlcCompra.class);
-		Root<KardexSlcCompra> c = delete.from(KardexSlcCompra.class);
-		delete.where(cb.equal(
-				c.get("cotizacioncompra").get("idcotizacioncompra"),
-				idcotizacioncompra));
+		delete.where(cb.equal(c.get("id_origen"), idorigen));
 		Query query = getEntityManager().createQuery(delete);
 		query.executeUpdate();
 		getEntityManager().getTransaction().commit();

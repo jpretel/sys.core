@@ -69,6 +69,10 @@ public class FlujoAprobacionDAO extends AbstractDAO<FlujoAprobacion> {
 		if (flujoAprobacion.size() == 0) {
 			return null;
 		}
+		
+		if (flujo == null) {
+			return null;
+		}
 
 		int index = -1;
 		salir: for (int i = 0; i < flujoAprobacion.size(); i++) {
@@ -94,6 +98,10 @@ public class FlujoAprobacionDAO extends AbstractDAO<FlujoAprobacion> {
 		if (flujoAprobacion.size() == 0) {
 			return null;
 		}
+		
+		if (flujo == null) {
+			return flujoAprobacion.get(0).getFlujo();
+		}
 
 		int index = -1;
 		salir: for (int i = 0; i < flujoAprobacion.size(); i++) {
@@ -104,7 +112,7 @@ public class FlujoAprobacionDAO extends AbstractDAO<FlujoAprobacion> {
 			}
 		}
 
-		if (index > -1 && index < flujoAprobacion.size()) {
+		if (index > -1 && index < flujoAprobacion.size()-1) {
 			return flujoAprobacion.get(index + 1).getFlujo();
 		} else {
 			return null;

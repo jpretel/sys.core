@@ -16,19 +16,16 @@ import core.entity.Unimedida;
 public class KardexSlcCompra implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name="idsolicitudcompra", referencedColumnName = "idsolicitudcompra",nullable = true)
-	private SolicitudCompra solicitudcompra;
+	@Column(length = 10)
+	private String tipo_origen;
 	
-	@ManyToOne
-	@JoinColumn(name="idcotizacioncompra",referencedColumnName = "idcotizacioncompra",nullable = true)
-	private CotizacionCompra cotizacioncompra;
-	
+	private long id_origen;
+
 	@Column(length = 10)
 	private String tipo_referencia;
 	private long id_referencia;
@@ -36,18 +33,15 @@ public class KardexSlcCompra implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idproducto", referencedColumnName = "idproducto")
 	private Producto producto;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idunimedida", referencedColumnName = "idunimedida")
-	
 	private Unimedida unimedida;
-	
+
 	private int factor;
-	
+
 	@Column(precision = 17, scale = 6)
-	
 	private float cantidad;
-	
 
 	public KardexSlcCompra() {
 		super();
@@ -101,28 +95,28 @@ public class KardexSlcCompra implements Serializable {
 		this.id_referencia = id_referencia;
 	}
 
-	public SolicitudCompra getSolicitudcompra() {
-		return solicitudcompra;
-	}
-
-	public void setSolicitudcompra(SolicitudCompra solicitudcompra) {
-		this.solicitudcompra = solicitudcompra;
-	}
-
 	public String getTipo_referencia() {
 		return tipo_referencia;
-	}
-	
-	public CotizacionCompra getCotizacioncompra() {
-		return cotizacioncompra;
-	}
-
-	public void setCotizacioncompra(CotizacionCompra cotizacioncompra) {
-		this.cotizacioncompra = cotizacioncompra;
 	}
 
 	public void setTipo_referencia(String tipo_referencia) {
 		this.tipo_referencia = tipo_referencia;
+	}
+
+	public long getId_origen() {
+		return id_origen;
+	}
+
+	public void setId_origen(long id_origen) {
+		this.id_origen = id_origen;
+	}
+
+	public String getTipo_origen() {
+		return tipo_origen;
+	}
+
+	public void setTipo_origen(String tipo_origen) {
+		this.tipo_origen = tipo_origen;
 	}
 
 }
