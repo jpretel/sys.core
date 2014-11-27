@@ -25,6 +25,8 @@ public class Unimedida implements Serializable {
 
 	@Column(nullable=false, length=20)
 	private String nomenclatura;
+	
+	private String cod_sunat;
 
 	//bi-directional many-to-one association to Producto
 	@OneToMany(mappedBy="unimedida")
@@ -82,4 +84,12 @@ public class Unimedida implements Serializable {
 	public String historial(){
         return "Codigo: "+this.idunimedida + " Descripcion: " + this.descripcion + " Nomenclaruta: " + this.nomenclatura;
     }
+
+	public String getCod_sunat() {
+		return cod_sunat;
+	}
+
+	public void setCod_sunat(String cod_sunat) {
+		this.cod_sunat = cod_sunat;
+	}
 }
