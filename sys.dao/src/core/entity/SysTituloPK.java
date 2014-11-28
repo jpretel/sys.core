@@ -16,7 +16,7 @@ public class SysTituloPK implements Serializable {
 	@Column(nullable=false)
 	private String idmodulo;
 
-	@Column(nullable=false, length=3)
+	@Column(nullable=false, length=10)
 	private String idtitulo;
 
 	public SysTituloPK() {

@@ -16,7 +16,7 @@ public class SysModulo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(nullable=false, length=5)
+	@Column(nullable=false, length=10)
 	private String idmodulo;
 
 	@Column(length=75)

@@ -22,6 +22,9 @@ public class SysTitulo implements Serializable {
 
 	@Column(length=75)
 	private String descripcion;
+	
+	@Column(length=250)
+	private String imagen;
 
 	//bi-directional many-to-one association to SysGrupo
 	@OneToMany(mappedBy="sysTitulo")
@@ -79,6 +82,14 @@ public class SysTitulo implements Serializable {
 
 	public void setSysModulo(SysModulo sysModulo) {
 		this.sysModulo = sysModulo;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 }

@@ -1,7 +1,9 @@
 package core.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -20,6 +22,9 @@ public class SysGrupo implements Serializable {
 
 	@Column(length=75)
 	private String descripcion;
+	
+	@Column(length=250)
+	private String imagen;
 
 	//bi-directional many-to-one association to SysTitulo
 	@ManyToOne
@@ -80,6 +85,14 @@ public class SysGrupo implements Serializable {
 		sysOpcion.setSysGrupo(null);
 
 		return sysOpcion;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 }

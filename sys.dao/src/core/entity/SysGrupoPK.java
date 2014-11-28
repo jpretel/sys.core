@@ -18,7 +18,7 @@ public class SysGrupoPK implements Serializable {
 	@Column
 	private String idtitulo;
 
-	@Column(nullable=false, length=3)
+	@Column(nullable=false, length=10)
 	private String idgrupo;
 
 	public SysGrupoPK() {
