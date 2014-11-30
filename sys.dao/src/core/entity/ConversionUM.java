@@ -11,8 +11,11 @@ import javax.persistence.*;
 @Table(name = "conversion_um")
 public class ConversionUM implements Serializable {
 
-	@EmbeddedId
-	private ConversionUMPK id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private long idconvercion_um;
+	
+	@Column(precision = 1, scale = 0)
 	private float factor;
 	@ManyToOne
 	@JoinColumn(name = "idunimedida", referencedColumnName = "idunimedida", insertable = false, updatable = false, nullable = false)
@@ -34,14 +37,6 @@ public class ConversionUM implements Serializable {
 		this.factor = factor;
 	}
 
-	public ConversionUMPK getId() {
-		return id;
-	}
-
-	public void setId(ConversionUMPK id) {
-		this.id = id;
-	}
-
 	public Unimedida getUnimedida() {
 		return unimedida;
 	}
@@ -56,6 +51,14 @@ public class ConversionUM implements Serializable {
 
 	public void setUnimedida_equiv(Unimedida unimedida_equiv) {
 		this.unimedida_equiv = unimedida_equiv;
+	}
+
+	public long getIdconvercion_um() {
+		return idconvercion_um;
+	}
+
+	public void setIdconvercion_um(long idconvercion_um) {
+		this.idconvercion_um = idconvercion_um;
 	}
 
 }

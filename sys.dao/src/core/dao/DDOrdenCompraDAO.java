@@ -20,8 +20,7 @@ public class DDOrdenCompraDAO extends AbstractDAO<DDOrdenCompra> {
 	public List<DDOrdenCompra> getPorOrdenCompra(OrdenCompra oc) {
 		CriteriaQuery<DDOrdenCompra> q = cb.createQuery(DDOrdenCompra.class);
 		Root<DDOrdenCompra> c = q.from(DDOrdenCompra.class);
-		Predicate condicion = cb.equal(c.get("id").get("idordencompra"),
-				oc.getIdordencompra());
+		Predicate condicion = cb.equal(c.get("ordencompra"), oc);
 		q.select(c).where(condicion);
 		return getEntityManager().createQuery(q).getResultList();
 	}
@@ -31,8 +30,7 @@ public class DDOrdenCompraDAO extends AbstractDAO<DDOrdenCompra> {
 		CriteriaDelete<DDOrdenCompra> delete = cb
 				.createCriteriaDelete(DDOrdenCompra.class);
 		Root<DDOrdenCompra> c = delete.from(DDOrdenCompra.class);
-		delete.where(cb.equal(c.get("id").get("idordencompra"),
-				oc.getIdordencompra()));
+		delete.where(cb.equal(c.get("ordencompra"), oc));
 		Query query = getEntityManager().createQuery(delete);
 		query.executeUpdate();
 		getEntityManager().getTransaction().commit();

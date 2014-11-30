@@ -17,11 +17,12 @@ public class DSolicitudCotizacion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private DSolicitudCotizacionPK id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private long iddsolicitudcotizacion;
 
 	@ManyToOne
-	@JoinColumn(name = "idsolicitudcotizacion", referencedColumnName = "idsolicitudcotizacion", insertable = false, updatable = false)
+	@JoinColumn(name = "idsolicitudcotizacion", referencedColumnName = "idsolicitudcotizacion")
 	private SolicitudCotizacion solicitud;
 
 	@ManyToOne
@@ -63,20 +64,20 @@ public class DSolicitudCotizacion implements Serializable {
 		this.cantidad = cantidad;
 	}
 
-	public DSolicitudCotizacionPK getId() {
-		return id;
-	}
-
-	public void setId(DSolicitudCotizacionPK id) {
-		this.id = id;
-	}
-
 	public SolicitudCotizacion getSolicitud() {
 		return solicitud;
 	}
 
 	public void setSolicitud(SolicitudCotizacion solicitud) {
 		this.solicitud = solicitud;
+	}
+
+	public long getIddsolicitudcotizacion() {
+		return iddsolicitudcotizacion;
+	}
+
+	public void setIddsolicitudcotizacion(long iddsolicitudcotizacion) {
+		this.iddsolicitudcotizacion = iddsolicitudcotizacion;
 	}
 
 }

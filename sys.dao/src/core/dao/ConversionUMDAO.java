@@ -1,8 +1,9 @@
 package core.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -24,19 +25,13 @@ public class ConversionUMDAO extends AbstractDAO<ConversionUM> {
 		return getEntityManager().createQuery(q).getResultList();
 	}
 	
-	public List<ConversionUM> aEliminar(Unimedida unimedida, List<ConversionUM> conversiones) {
-		List<ConversionUM> eliminar = new ArrayList<ConversionUM>();
-		for (ConversionUM o1 : getPorUnimedida(unimedida)) {
-			boolean existe = false;
-			salir: for (ConversionUM o2 : conversiones) {
-				if (o1.getId().equals(o2.getId())) {
-					existe = true;
-					break salir;
-				}
-			}
-			if (!existe)
-				eliminar.add(o1);
-		}
-		return eliminar;
+	public void borrarPorUnimedida(Unimedida unimedida) {
+		getEntityManager().getTransaction().begin();
+		CriteriaDelete<ConversionUM> delete = cb.createCriteriaDelete(ConversionUM.class);
+		Root<ConversionUM> c = delete.from(ConversionUM.class);
+		delete.where(cb.equal(c.get("unimedida"), unimedida));
+		Query query = getEntityManager().createQuery(delete);
+		query.executeUpdate();
+		getEntityManager().getTransaction().commit();
 	}
 }

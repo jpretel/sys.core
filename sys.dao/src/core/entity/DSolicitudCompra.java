@@ -12,11 +12,12 @@ import javax.persistence.*;
 public class DSolicitudCompra implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private DSolicitudCompraPK id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private long iddsolicitudcompra;
 
 	@ManyToOne
-	@JoinColumn(name = "idsolicitudcompra", referencedColumnName = "idsolicitudcompra", insertable = false, updatable = false, nullable = false)
+	@JoinColumn(name = "idsolicitudcompra", referencedColumnName = "idsolicitudcompra")
 	private SolicitudCompra solicitudcompra;
 
 	@ManyToOne
@@ -32,14 +33,6 @@ public class DSolicitudCompra implements Serializable {
 
 	public DSolicitudCompra() {
 		super();
-	}
-
-	public DSolicitudCompraPK getId() {
-		return id;
-	}
-
-	public void setId(DSolicitudCompraPK id) {
-		this.id = id;
 	}
 
 	public Producto getProducto() {
@@ -72,6 +65,14 @@ public class DSolicitudCompra implements Serializable {
 
 	public void setSolicitudcompra(SolicitudCompra solicitudcompra) {
 		this.solicitudcompra = solicitudcompra;
+	}
+
+	public long getIddsolicitudcompra() {
+		return iddsolicitudcompra;
+	}
+
+	public void setIddsolicitudcompra(long iddsolicitudcompra) {
+		this.iddsolicitudcompra = iddsolicitudcompra;
 	}
 
 	

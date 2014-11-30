@@ -1,8 +1,9 @@
 package core.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -24,22 +25,14 @@ public class ProductoStockMinimoDAO extends AbstractDAO<ProductoStockMinimo> {
 		q.select(c).where(condicion);
 		return getEntityManager().createQuery(q).getResultList();
 	}
-
-	public List<ProductoStockMinimo> aEliminar(Producto producto,
-			List<ProductoStockMinimo> stockMinimo) {
-		List<ProductoStockMinimo> eliminar = new ArrayList<ProductoStockMinimo>();
-		for (ProductoStockMinimo o1 : getPorProducto(producto)) {
-			boolean existe = false;
-			salir: for (ProductoStockMinimo o2 : stockMinimo) {
-				if (o1.getId().equals(o2.getId())) {
-					existe = true;
-					break salir;
-				}
-			}
-			if (!existe)
-				eliminar.add(o1);
-		}
-		return eliminar;
-	}
 	
+	public void borrarPorProducto (Producto producto) {
+		getEntityManager().getTransaction().begin();
+		CriteriaDelete<ProductoStockMinimo> delete = cb.createCriteriaDelete(ProductoStockMinimo.class);
+		Root<ProductoStockMinimo> c = delete.from(ProductoStockMinimo.class);
+		delete.where(cb.equal(c.get("producto"), producto));
+		Query query = getEntityManager().createQuery(delete);
+		query.executeUpdate();
+		getEntityManager().getTransaction().commit();
+	}	
 }

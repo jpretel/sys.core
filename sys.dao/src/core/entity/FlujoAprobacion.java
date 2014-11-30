@@ -9,33 +9,27 @@ import javax.persistence.*;
  *
  */
 @Entity
-@Table(name = "flujo_aprobacion")
 public class FlujoAprobacion implements Serializable {
 
-	@EmbeddedId
-	private FlujoAprobacionPK id;
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private long idflujoaprobacion;
+	
+	private int orden;
+	
 	@ManyToOne
 	@JoinColumn(name = "idflujo", referencedColumnName = "idflujo")
 	private Flujo flujo;
 
 	@ManyToOne
-	@JoinColumn(name = "idformulario", referencedColumnName = "idformulario", insertable = false, updatable = false)
+	@JoinColumn(name = "idformulario", referencedColumnName = "idformulario")
 	private SysFormulario sysFormulario;
 	private static final long serialVersionUID = 1L;
 
 	public FlujoAprobacion() {
 		super();
 	}
-
-	public FlujoAprobacionPK getId() {
-		return id;
-	}
-
-	public void setId(FlujoAprobacionPK id) {
-		this.id = id;
-	}
-
+	
 	public Flujo getFlujo() {
 		return flujo;
 	}
@@ -50,5 +44,21 @@ public class FlujoAprobacion implements Serializable {
 
 	public void setSysFormulario(SysFormulario sysFormulario) {
 		this.sysFormulario = sysFormulario;
+	}
+
+	public long getIdflujoaprobacion() {
+		return idflujoaprobacion;
+	}
+
+	public void setIdflujoaprobacion(long idflujoaprobacion) {
+		this.idflujoaprobacion = idflujoaprobacion;
+	}
+
+	public int getOrden() {
+		return orden;
+	}
+
+	public void setOrden(int orden) {
+		this.orden = orden;
 	}
 }

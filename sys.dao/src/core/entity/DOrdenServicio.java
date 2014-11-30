@@ -12,11 +12,12 @@ import javax.persistence.*;
 public class DOrdenServicio implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private DOrdenServicioPK id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private long iddordenservicio;
 
 	@ManyToOne
-	@JoinColumn(name = "idordenservicio", referencedColumnName = "idordenservicio", insertable = false, updatable = false, nullable = false)
+	@JoinColumn(name = "idordenservicio", referencedColumnName = "idordenservicio")
 	private OrdenServicio ordenservicio;
 
 	@ManyToOne
@@ -80,20 +81,20 @@ public class DOrdenServicio implements Serializable {
 		this.importe = importe;
 	}
 
-	public DOrdenServicioPK getId() {
-		return id;
-	}
-
-	public void setId(DOrdenServicioPK id) {
-		this.id = id;
-	}
-
 	public OrdenServicio getOrdenservicio() {
 		return ordenservicio;
 	}
 
 	public void setOrdenservicio(OrdenServicio ordenservicio) {
 		this.ordenservicio = ordenservicio;
+	}
+
+	public long getIddordenservicio() {
+		return iddordenservicio;
+	}
+
+	public void setIddordenservicio(long iddordenservicio) {
+		this.iddordenservicio = iddordenservicio;
 	}
 
 

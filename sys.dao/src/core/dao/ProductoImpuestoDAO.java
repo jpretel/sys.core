@@ -1,8 +1,9 @@
 package core.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -24,21 +25,16 @@ public class ProductoImpuestoDAO extends AbstractDAO<ProductoImpuesto> {
 		q.select(c).where(condicion);
 		return getEntityManager().createQuery(q).getResultList();
 	}
-
-	public List<ProductoImpuesto> aEliminar(Producto producto,
-			List<ProductoImpuesto> impuestos) {
-		List<ProductoImpuesto> eliminar = new ArrayList<ProductoImpuesto>();
-		for (ProductoImpuesto o1 : getPorProducto(producto)) {
-			boolean existe = false;
-			salir: for (ProductoImpuesto o2 : impuestos) {
-				if (o1.getId().equals(o2.getId())) {
-					existe = true;
-					break salir;
-				}
-			}
-			if (!existe)
-				eliminar.add(o1);
-		}
-		return eliminar;
+	
+	
+	
+	public void borrarPorProducto(Producto producto) {
+		getEntityManager().getTransaction().begin();
+		CriteriaDelete<ProductoImpuesto> delete = cb.createCriteriaDelete(ProductoImpuesto.class);
+		Root<ProductoImpuesto> c = delete.from(ProductoImpuesto.class);
+		delete.where(cb.equal(c.get("producto"), producto));
+		Query query = getEntityManager().createQuery(delete);
+		query.executeUpdate();
+		getEntityManager().getTransaction().commit();
 	}
 }

@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-
 /**
  * Entity implementation class for Entity: DAsiento
  *
@@ -12,10 +11,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "dasiento")
 public class DAsiento implements Serializable {
-
-	@EmbeddedId
-	private DAsientoPK id;
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private long iddasiento;
+	
 	@JoinColumn(name = "idcuenta", referencedColumnName = "idcuenta")
 	private Cuenta cuenta;
 
@@ -30,34 +30,26 @@ public class DAsiento implements Serializable {
 	private float haber_of;
 
 	private float haber_ex;
-	
+
 	// Analisis por Producto
 	@JoinColumn(name = "idproducto", referencedColumnName = "idproducto")
 	private Producto producto;
-	
+
 	@Column(scale = 17, precision = 8)
 	private float cantidad;
-	
+
 	// Analisis por Centro de Costo
 	@JoinColumn(name = "idconsumidor", referencedColumnName = "idconsumidor")
 	private Consumidor consumidor;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "idasiento", referencedColumnName ="idasiento", insertable = false, updatable = false)
+	@JoinColumn(name = "idasiento", referencedColumnName = "idasiento")
 	private Asiento asiento;
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	public DAsiento() {
 		super();
-	}
-	
-	public DAsientoPK getId() {
-		return id;
-	}
-
-	public void setId(DAsientoPK id) {
-		this.id = id;
 	}
 
 	public float getDebe() {
@@ -146,5 +138,13 @@ public class DAsiento implements Serializable {
 
 	public void setAsiento(Asiento asiento) {
 		this.asiento = asiento;
+	}
+
+	public long getIddasiento() {
+		return iddasiento;
+	}
+
+	public void setIddasiento(long iddasiento) {
+		this.iddasiento = iddasiento;
 	}
 }

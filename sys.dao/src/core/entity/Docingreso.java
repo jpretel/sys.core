@@ -41,7 +41,7 @@ public class Docingreso implements Serializable {
 	private Almacen almacen;
 	
 	@ManyToOne
-	@JoinColumn(name = "idordencompra", referencedColumnName = "idordencompra",nullable = false)
+	@JoinColumn(name = "idordencompra", referencedColumnName = "idordencompra")
 	private OrdenCompra ordencompra;
 	
 	public OrdenCompra getOrdencompra() {

@@ -13,29 +13,18 @@
 		<class>core.entity.Concepto</class>
 		<class>core.entity.Consumidor</class>
 		<class>core.entity.ConversionUM</class>
-		<class>core.entity.ConversionUMPK</class>
 		<class>core.entity.CotizacionCompra</class>
 		<class>core.entity.Cuenta</class>
 		<class>core.entity.DAsiento</class>
-		<class>core.entity.DAsientoPK</class>
 		<class>core.entity.DCotizacionCompra</class>
-		<class>core.entity.DCotizacionCompraPK</class>
 		<class>core.entity.DDOrdenCompra</class>
-		<class>core.entity.DDOrdenCompraPK</class>
 		<class>core.entity.DOrdenCompra</class>
-		<class>core.entity.DOrdenCompraPK</class>
 		<class>core.entity.DOrdenServicio</class>
-		<class>core.entity.DOrdenServicioPK</class>
 		<class>core.entity.DRequerimiento</class>
-		<class>core.entity.DRequerimientoPK</class>
 		<class>core.entity.DSolicitudCompra</class>
-		<class>core.entity.DSolicitudCompraPK</class>
 		<class>core.entity.DSolicitudCotizacion</class>
-		<class>core.entity.DSolicitudCotizacionPK</class>
 		<class>core.entity.DetDocingreso</class>
-		<class>core.entity.DetDocingresoPK</class>
 		<class>core.entity.DetDocsalida</class>
-		<class>core.entity.DetDocsalidaPK</class>
 		<class>core.entity.DocFormulario</class>
 		<class>core.entity.Docingreso</class>
 		<class>core.entity.Docsalida</class>
@@ -47,7 +36,6 @@
 		<class>core.entity.Equipo</class>
 		<class>core.entity.Flujo</class>
 		<class>core.entity.FlujoAprobacion</class>
-		<class>core.entity.FlujoAprobacionPK</class>
 		<class>core.entity.Grupo</class>
 		<class>core.entity.GrupoCentralizacion</class>
 		<class>core.entity.GrupoUsuario</class>
@@ -66,12 +54,9 @@
 		<class>core.entity.OrdenCompra</class>
 		<class>core.entity.OrdenServicio</class>
 		<class>core.entity.PrivUsuarioAlmacen</class>
-		<class>core.entity.PrivUsuarioAlmacenPK</class>
 		<class>core.entity.Producto</class>
 		<class>core.entity.ProductoImpuesto</class>
-		<class>core.entity.ProductoImpuestoPK</class>
 		<class>core.entity.ProductoStockMinimo</class>
-		<class>core.entity.ProductoStockMinimoPK</class>
 		<class>core.entity.PtoEmision</class>
 		<class>core.entity.Requerimiento</class>
 		<class>core.entity.Responsable</class>
@@ -97,7 +82,6 @@
 		<class>core.entity.SysTitulo</class>
 		<class>core.entity.SysTituloPK</class>
 		<class>core.entity.TCambio</class>
-		<class>core.entity.TCambioPK</class>
 		<class>core.entity.Transportista</class>
 		<class>core.entity.Unimedida</class>
 		<class>core.entity.Usuario</class>

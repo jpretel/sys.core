@@ -1,6 +1,5 @@
 package core.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -27,33 +26,19 @@ public class DCotizacionCompraDAO extends AbstractDAO<DCotizacionCompra> {
 		return getEntityManager().createQuery(q).getResultList();
 	}
 
-	public List<DCotizacionCompra> aEliminar(CotizacionCompra oc,
-			List<DCotizacionCompra> almacenes) {
-		List<DCotizacionCompra> eliminar = new ArrayList<DCotizacionCompra>();
-		for (DCotizacionCompra o1 : getPorCotizacionCompra(oc)) {
-			boolean existe = false;
-			salir: for (DCotizacionCompra o2 : almacenes) {
-				if (o1.getId().equals(o2.getId())) {
-					existe = true;
-					break salir;
-				}
-			}
-			if (!existe)
-				eliminar.add(o1);
-		}
-		return eliminar;
-	}
-
 	public void borrarPorCotizacionCompra(CotizacionCompra oc) {
 		getEntityManager().getTransaction().begin();
 		CriteriaDelete<DCotizacionCompra> delete = cb
 				.createCriteriaDelete(DCotizacionCompra.class);
 		Root<DCotizacionCompra> c = delete.from(DCotizacionCompra.class);
-		delete.where(cb.equal(c.get("id").get("idcotizacioncompra"),
-				oc.getIdcotizacioncompra()));
+		delete.where(cb.equal(c.get("cotizacioncompra"), oc));
 		Query query = getEntityManager().createQuery(delete);
-		query.executeUpdate();
-		getEntityManager().getTransaction().commit();
+		try {
+			query.executeUpdate();
+			getEntityManager().getTransaction().commit();			
+		} catch (Exception e) {
+			getEntityManager().getTransaction().rollback();
+		}
 	}
 
 }

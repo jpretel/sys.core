@@ -11,8 +11,9 @@ import javax.persistence.*;
 @Table(name = "priv_usuario_almacen")
 public class PrivUsuarioAlmacen implements Serializable {
 
-	@EmbeddedId
-	private PrivUsuarioAlmacenPK id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private long idprivusuarioalmacen;
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,26 +21,18 @@ public class PrivUsuarioAlmacen implements Serializable {
 		super();
 	}
 
-	public PrivUsuarioAlmacenPK getId() {
-		return id;
-	}
-
-	public void setId(PrivUsuarioAlmacenPK id) {
-		this.id = id;
-	}
-
 	@ManyToOne
-	@JoinColumn(name = "idusuario", referencedColumnName = "idusuario", insertable = false, updatable = false)
+	@JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
 	private Usuario usuario;
 
 	@ManyToOne
-	@JoinColumn(name = "idsucursal", referencedColumnName = "idsucursal", insertable = false, updatable = false)
+	@JoinColumn(name = "idsucursal", referencedColumnName = "idsucursal")
 	private Sucursal sucursal;
 
 	@ManyToOne
 	@JoinColumns({
 			@JoinColumn(name = "idsucursal", referencedColumnName = "idsucursal", insertable = false, updatable = false),
-			@JoinColumn(name = "idalmacen", referencedColumnName = "idalmacen", insertable = false, updatable = false) })
+			@JoinColumn(name = "idalmacen", referencedColumnName = "idalmacen") })
 	private Almacen almacen;
 
 	public Usuario getUsuario() {
@@ -64,6 +57,14 @@ public class PrivUsuarioAlmacen implements Serializable {
 
 	public void setSucursal(Sucursal sucursal) {
 		this.sucursal = sucursal;
+	}
+
+	public long getIdprivusuarioalmacen() {
+		return idprivusuarioalmacen;
+	}
+
+	public void setIdprivusuarioalmacen(long idprivusuarioalmacen) {
+		this.idprivusuarioalmacen = idprivusuarioalmacen;
 	}
 
 }

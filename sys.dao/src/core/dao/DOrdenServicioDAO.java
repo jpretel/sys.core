@@ -1,8 +1,9 @@
 package core.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -16,28 +17,25 @@ public class DOrdenServicioDAO extends AbstractDAO<DOrdenServicio> {
 		super(DOrdenServicio.class);
 	}
 	
-	public List<DOrdenServicio> getPorOrdenServicio(OrdenServicio oc) {
+	public List<DOrdenServicio> getPorOrdenServicio(OrdenServicio os) {
 		CriteriaQuery<DOrdenServicio> q = cb.createQuery(DOrdenServicio.class);
 		Root<DOrdenServicio> c = q.from(DOrdenServicio.class);
-		Predicate condicion = cb.equal( c.get("ordenservicio"), oc);
+		Predicate condicion = cb.equal( c.get("ordenservicio"), os);
 		q.select(c).where(condicion);
 		return getEntityManager().createQuery(q).getResultList();
 	}
 	
-	public List<DOrdenServicio> aEliminar(OrdenServicio oc, List<DOrdenServicio> ordenes) {
-		List<DOrdenServicio> eliminar = new ArrayList<DOrdenServicio>();
-		for (DOrdenServicio o1 : getPorOrdenServicio(oc)) {
-			boolean existe = false;
-			salir: for (DOrdenServicio o2 : ordenes) {
-				if (o1.getId().equals(o2.getId())) {
-					existe = true;
-					break salir;
-				}
-			}
-			if (!existe)
-				eliminar.add(o1);
+	public void borrarPorOrdenServicio(OrdenServicio os) {
+		getEntityManager().getTransaction().begin();
+		CriteriaDelete<DOrdenServicio> delete = cb.createCriteriaDelete(DOrdenServicio.class);
+		Root<DOrdenServicio> c = delete.from(DOrdenServicio.class);
+		delete.where(cb.equal(c.get("ordenservicio"), os));
+		Query query = getEntityManager().createQuery(delete);
+		try {
+			query.executeUpdate();
+			getEntityManager().getTransaction().commit();
+		} catch (Exception e) {
+			getEntityManager().getTransaction().rollback();
 		}
-		return eliminar;
 	}
-
 }

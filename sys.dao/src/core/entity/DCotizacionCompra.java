@@ -1,6 +1,7 @@
 package core.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 /**
@@ -12,11 +13,12 @@ import javax.persistence.*;
 public class DCotizacionCompra implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private DCotizacionCompraPK id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private long iddcotizacioncompra;
 
 	@ManyToOne
-	@JoinColumn(name = "idcotizacioncompra", referencedColumnName = "idcotizacioncompra", insertable = false, updatable = false, nullable = false)
+	@JoinColumn(name = "idcotizacioncompra", referencedColumnName = "idcotizacioncompra")
 	private CotizacionCompra cotizacioncompra;
 
 	@ManyToOne
@@ -135,19 +137,19 @@ public class DCotizacionCompra implements Serializable {
 		this.importe = importe;
 	}
 
-	public DCotizacionCompraPK getId() {
-		return id;
-	}
-
-	public void setId(DCotizacionCompraPK id) {
-		this.id = id;
-	}
-
 	public CotizacionCompra getCotizacioncompra() {
 		return cotizacioncompra;
 	}
 
 	public void setCotizacioncompra(CotizacionCompra cotizacioncompra) {
 		this.cotizacioncompra = cotizacioncompra;
+	}
+
+	public long getIddcotizacioncompra() {
+		return iddcotizacioncompra;
+	}
+
+	public void setIddcotizacioncompra(long iddcotizacioncompra) {
+		this.iddcotizacioncompra = iddcotizacioncompra;
 	}
 }

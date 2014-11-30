@@ -17,11 +17,12 @@ public class DRequerimiento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private DRequerimientoPK id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private long iddrequerimiento;
 
 	@ManyToOne
-	@JoinColumn(name = "idrequerimiento", referencedColumnName = "idrequerimiento", insertable = false, updatable = false)
+	@JoinColumn(name = "idrequerimiento", referencedColumnName = "idrequerimiento")
 	private Requerimiento requerimiento;
 
 	@ManyToOne
@@ -67,14 +68,6 @@ public class DRequerimiento implements Serializable {
 		this.cantidad = cantidad;
 	}
 
-	public DRequerimientoPK getId() {
-		return id;
-	}
-
-	public void setId(DRequerimientoPK id) {
-		this.id = id;
-	}
-
 	public Requerimiento getRequerimiento() {
 		return requerimiento;
 	}
@@ -89,6 +82,14 @@ public class DRequerimiento implements Serializable {
 
 	public void setConsumidor(Consumidor consumidor) {
 		this.consumidor = consumidor;
+	}
+
+	public long getIddrequerimiento() {
+		return iddrequerimiento;
+	}
+
+	public void setIddrequerimiento(long iddrequerimiento) {
+		this.iddrequerimiento = iddrequerimiento;
 	}
 
 }

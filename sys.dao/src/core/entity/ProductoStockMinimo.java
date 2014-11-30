@@ -10,8 +10,9 @@ import javax.persistence.*;
 @Entity
 public class ProductoStockMinimo implements Serializable {
 
-	@EmbeddedId
-	private ProductoStockMinimoPK id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private long idproducto_stockminimo;
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,14 +39,6 @@ public class ProductoStockMinimo implements Serializable {
 	
 	@Column(precision = 17, scale = 6)
 	private float reposicion;
-	
-	public ProductoStockMinimoPK getId() {
-		return id;
-	}
-
-	public void setId(ProductoStockMinimoPK id) {
-		this.id = id;
-	}
 
 	public Producto getProducto() {
 		return producto;
@@ -85,5 +78,13 @@ public class ProductoStockMinimo implements Serializable {
 
 	public void setReposicion(float reposicion) {
 		this.reposicion = reposicion;
+	}
+
+	public long getIdproducto_stockminimo() {
+		return idproducto_stockminimo;
+	}
+
+	public void setIdproducto_stockminimo(long idproducto_stockminimo) {
+		this.idproducto_stockminimo = idproducto_stockminimo;
 	}
 }

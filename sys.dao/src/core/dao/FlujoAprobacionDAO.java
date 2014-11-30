@@ -24,7 +24,7 @@ public class FlujoAprobacionDAO extends AbstractDAO<FlujoAprobacion> {
 		Root<FlujoAprobacion> from = q.from(FlujoAprobacion.class);
 		Predicate condicion = cb.equal(from.get("sysFormulario"), formulario);
 		q.select(from).where(condicion)
-				.orderBy(cb.asc(from.get("id").get("orden")));
+				.orderBy(cb.asc(from.get("orden")));
 		return getEntityManager().createQuery(q).getResultList();
 	}
 

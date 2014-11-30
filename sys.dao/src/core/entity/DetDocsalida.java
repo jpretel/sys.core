@@ -14,8 +14,9 @@ import javax.persistence.*;
 public class DetDocsalida implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private DetDocsalidaPK id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private long iddet_docsalida;
 
 	@Column(nullable = false, precision = 10, scale = 2)
 	private float cantidad;
@@ -35,7 +36,7 @@ public class DetDocsalida implements Serializable {
 	private Producto producto;
 
 	@ManyToOne
-	@JoinColumn(name = "iddocsalida", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "iddocsalida", nullable = false)
 	private Docsalida docsalida;
 
 	@Column(length = 15)
@@ -92,14 +93,6 @@ public class DetDocsalida implements Serializable {
 		this.idconsumidor = idconsumidor;
 	}
 
-	public void setId(DetDocsalidaPK id) {
-		this.id = id;
-	}
-
-	public DetDocsalidaPK getId() {
-		return this.id;
-	}
-
 	public Unimedida getUnimedida() {
 		return unimedida;
 	}
@@ -130,6 +123,14 @@ public class DetDocsalida implements Serializable {
 
 	public void setId_referencia(long id_referencia) {
 		this.id_referencia = id_referencia;
+	}
+
+	public long getIddet_docsalida() {
+		return iddet_docsalida;
+	}
+
+	public void setIddet_docsalida(long iddet_docsalida) {
+		this.iddet_docsalida = iddet_docsalida;
 	}
 
 }

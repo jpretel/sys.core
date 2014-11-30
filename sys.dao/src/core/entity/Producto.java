@@ -35,6 +35,16 @@ public class Producto implements Serializable {
 	@Column(name = "es_servicio", precision = 1, scale = 0)
 	private int esServicio;
 
+	@Column(length = 150)
+	private String nombre_original;
+
+	@Column(length = 30)
+	private String codigo_alternativo;
+
+	@ManyToOne
+	@JoinColumn(name = "idfabricante", referencedColumnName = "idclieprov")
+	private Clieprov fabricante;
+
 	@Override
 	public String toString() {
 		return "Producto [idproducto=" + idproducto + ", descCorta="
@@ -137,12 +147,25 @@ public class Producto implements Serializable {
 	}
 
 	public String historial() {
-		return "Código: " + idproducto + ", descCorta: " + descCorta
-				+ ", descripcion=" + descripcion + ", esDescarte: "
-				+ esDescarte + ", esTerminado: " + esTerminado + ", esVenta: "
-				+ esVenta + ", subgrupo: " + subgrupo.getDescripcion()
-				+ ", marca: " + ((marca.getIdmarca()==null)?"":marca.getIdmarca()) + ", unimedida: "
-				+ ((unimedida.getDescripcion()==null)?"":unimedida.getDescripcion());
+		return "Código: "
+				+ idproducto
+				+ ", descCorta: "
+				+ descCorta
+				+ ", descripcion="
+				+ descripcion
+				+ ", esDescarte: "
+				+ esDescarte
+				+ ", esTerminado: "
+				+ esTerminado
+				+ ", esVenta: "
+				+ esVenta
+				+ ", subgrupo: "
+				+ subgrupo.getDescripcion()
+				+ ", marca: "
+				+ ((marca.getIdmarca() == null) ? "" : marca.getIdmarca())
+				+ ", unimedida: "
+				+ ((unimedida.getDescripcion() == null) ? "" : unimedida
+						.getDescripcion());
 	}
 
 	public int getEsServicio() {
@@ -151,5 +174,29 @@ public class Producto implements Serializable {
 
 	public void setEsServicio(int esServicio) {
 		this.esServicio = esServicio;
+	}
+
+	public String getNombre_original() {
+		return nombre_original;
+	}
+
+	public void setNombre_original(String nombre_original) {
+		this.nombre_original = nombre_original;
+	}
+
+	public String getCodigo_alternativo() {
+		return codigo_alternativo;
+	}
+
+	public void setCodigo_alternativo(String codigo_alternativo) {
+		this.codigo_alternativo = codigo_alternativo;
+	}
+
+	public Clieprov getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(Clieprov fabricante) {
+		this.fabricante = fabricante;
 	}
 }

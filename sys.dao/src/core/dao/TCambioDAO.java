@@ -8,7 +8,6 @@ import javax.persistence.criteria.Root;
 
 import core.entity.Moneda;
 import core.entity.TCambio;
-import core.entity.TCambioPK;
 
 public class TCambioDAO extends AbstractDAO<TCambio> {
 
@@ -16,12 +15,19 @@ public class TCambioDAO extends AbstractDAO<TCambio> {
 		super(TCambio.class);
 	}
 
-	public List<TCambio> getFechaMoneda(TCambioPK id) {
+	public TCambio getFechaMoneda(int anio, int mes, int dia, Moneda moneda) {
 		CriteriaQuery<TCambio> q = cb.createQuery(TCambio.class);
 		Root<TCambio> c = q.from(TCambio.class);
-		Predicate condicion = cb.equal(c.get("id"), id);
+		Predicate condicion = cb.and(cb.equal(c.get("anio"), anio),
+				cb.equal(c.get("mes"), mes), cb.equal(c.get("dia"), dia),
+				cb.equal(c.get("moneda"), moneda));
 		q.select(c).where(condicion);
-		return getEntityManager().createQuery(q).getResultList();	
+		try {
+			return getEntityManager().createQuery(q).getSingleResult();
+
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	public List<TCambio> getMesMoneda(Moneda moneda, int anio, int mes) {

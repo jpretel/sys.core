@@ -1,8 +1,9 @@
 package core.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -24,21 +25,18 @@ public class DSolicitudCotizacionDAO extends AbstractDAO<DSolicitudCotizacion> {
 		q.select(c).where(condicion);
 		return getEntityManager().createQuery(q).getResultList();
 	}
-
-	public List<DSolicitudCotizacion> aEliminar(SolicitudCotizacion solicitud,
-			List<DSolicitudCotizacion> detalle) {
-		List<DSolicitudCotizacion> eliminar = new ArrayList<DSolicitudCotizacion>();
-		for (DSolicitudCotizacion o1 : getPorSolicitud(solicitud)) {
-			boolean existe = false;
-			salir: for (DSolicitudCotizacion o2 : detalle) {
-				if (o1.getId().equals(o2.getId())) {
-					existe = true;
-					break salir;
-				}
-			}
-			if (!existe)
-				eliminar.add(o1);
+	
+	public void borrarPorSolicitudCorizacion(SolicitudCotizacion solicitud) {
+		getEntityManager().getTransaction().begin();
+		CriteriaDelete<DSolicitudCotizacion> delete = cb.createCriteriaDelete(DSolicitudCotizacion.class);
+		Root<DSolicitudCotizacion> c = delete.from(DSolicitudCotizacion.class);
+		delete.where(cb.equal(c.get("solicitud"), solicitud));
+		Query query = getEntityManager().createQuery(delete);
+		try {
+			query.executeUpdate();
+			getEntityManager().getTransaction().commit();
+		} catch (Exception e) {
+			getEntityManager().getTransaction().rollback();
 		}
-		return eliminar;
 	}
 }
