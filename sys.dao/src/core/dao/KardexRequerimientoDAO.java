@@ -29,15 +29,14 @@ public class KardexRequerimientoDAO extends AbstractDAO<KardexRequerimiento> {
 		query.executeUpdate();
 		getEntityManager().getTransaction().commit();
 	}
-	
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Tuple> getSaldoRequerimiento(Requerimiento requerimiento,
 			Docsalida docsalida) {
 
 		CriteriaQuery<Tuple> q = cb.createTupleQuery();
 		Root from = q.from(KardexRequerimiento.class);
-		
+
 		Predicate condicion = cb.and(
 				cb.equal(from.get("requerimiento"), requerimiento),
 				cb.and(cb.notEqual(from.get("id_referencia"),
@@ -64,4 +63,22 @@ public class KardexRequerimientoDAO extends AbstractDAO<KardexRequerimiento> {
 		getEntityManager().getTransaction().commit();
 	}
 
+	public List<Tuple> getSaldosFecha(int desde, int hasta) {
+
+		CriteriaQuery<Tuple> q = cb.createTupleQuery();
+		Root from = q.from(KardexRequerimiento.class);
+
+		Predicate condicion = cb.between(from.get("requerimiento").get("fecha"), desde, hasta);
+
+		q.multiselect(
+				from.get("requerimiento").alias("requerimiento"),
+				from.get("producto").alias("producto"),
+				cb.sum(cb.prod(from.get("factor"), from.get("cantidad")))
+						.alias("cantidad")).where(condicion);
+		q.groupBy(from.get("requerimiento"), from.get("producto"));
+		q.having(cb.greaterThan(
+				cb.sum(cb.prod(from.get("factor"), from.get("cantidad"))), 0));
+
+		return em.createQuery(q).getResultList();
+	}
 }
