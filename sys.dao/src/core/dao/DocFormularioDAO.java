@@ -9,7 +9,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import core.entity.DocFormulario;
-import core.entity.Documento;
+import core.entity.TipoDocumento;
 
 public class DocFormularioDAO extends AbstractDAO<DocFormulario> {
 
@@ -17,7 +17,7 @@ public class DocFormularioDAO extends AbstractDAO<DocFormulario> {
 		super(DocFormulario.class);
 	}
 	
-	public List<DocFormulario> getPorDocumento(Documento documento){
+	public List<DocFormulario> getPorDocumento(TipoDocumento documento){
 		CriteriaQuery<DocFormulario> q = cb.createQuery(DocFormulario.class);
 		Root<DocFormulario> c = q.from(DocFormulario.class);
 		Predicate condicion = cb.equal(c.get("documento"), documento);
@@ -33,7 +33,7 @@ public class DocFormularioDAO extends AbstractDAO<DocFormulario> {
 		return getEntityManager().createQuery(q).getSingleResult();
 	}
 	
-	public void borrarPorDocumento (Documento documento) {
+	public void borrarPorDocumento (TipoDocumento documento) {
 		getEntityManager().getTransaction().begin();
 		CriteriaDelete<DocFormulario> delete = cb.createCriteriaDelete(DocFormulario.class);
 		Root<DocFormulario> c = delete.from(DocFormulario.class);

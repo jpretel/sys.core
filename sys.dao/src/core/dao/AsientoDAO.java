@@ -11,13 +11,12 @@ import core.entity.Asiento;
 import core.entity.Subdiario;
 
 public class AsientoDAO extends AbstractDAO<Asiento> {
-	private static final String _ceros = "0000000000";
 
 	public AsientoDAO() {
 		super(Asiento.class);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public int getMaxNumerador(Subdiario subdiario, int anio, int mes) {
 		CriteriaQuery<Integer> q = cb.createQuery(Integer.class);
 		Root c = q.from(Asiento.class);

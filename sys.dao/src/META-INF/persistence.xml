@@ -20,6 +20,7 @@
 		<class>core.entity.DDOrdenCompra</class>
 		<class>core.entity.DOrdenCompra</class>
 		<class>core.entity.DOrdenServicio</class>
+		<class>core.entity.DProvision</class>
 		<class>core.entity.DRequerimiento</class>
 		<class>core.entity.DSolicitudCompra</class>
 		<class>core.entity.DSolicitudCotizacion</class>
@@ -28,9 +29,7 @@
 		<class>core.entity.DocFormulario</class>
 		<class>core.entity.Docingreso</class>
 		<class>core.entity.Docsalida</class>
-		<class>core.entity.Documento</class>
-		<class>core.entity.DocumentoNumero</class>
-		<class>core.entity.DocumentoNumeroPK</class>
+		<class>core.entity.TipoDocumento</class>
 		<class>core.entity.Empleado</class>
 		<class>core.entity.Empresa</class>
 		<class>core.entity.Equipo</class>
@@ -57,7 +56,7 @@
 		<class>core.entity.Producto</class>
 		<class>core.entity.ProductoImpuesto</class>
 		<class>core.entity.ProductoStockMinimo</class>
-		<class>core.entity.PtoEmision</class>
+		<class>core.entity.Provision</class>
 		<class>core.entity.Requerimiento</class>
 		<class>core.entity.Responsable</class>
 		<class>core.entity.SolicitudCompra</class>

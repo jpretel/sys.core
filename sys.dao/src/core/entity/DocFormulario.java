@@ -27,7 +27,7 @@ public class DocFormulario implements Serializable {
 	//bi-directional many-to-one association to Documento
 	@ManyToOne
 	@JoinColumn(name="iddocumento", nullable=false, insertable=false, updatable=false)
-	private Documento documento;
+	private TipoDocumento documento;
 
 	public DocFormulario() {
 	}
@@ -56,11 +56,11 @@ public class DocFormulario implements Serializable {
 		this.opcion = opcion;
 	}
 
-	public Documento getDocumento() {
+	public TipoDocumento getDocumento() {
 		return this.documento;
 	}
 
-	public void setDocumento(Documento documento) {
+	public void setDocumento(TipoDocumento documento) {
 		this.documento = documento;
 	}
 
